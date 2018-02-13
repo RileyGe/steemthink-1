@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"  ng-app="app"> <!--<![endif]-->
 <head>
 
 	<!-- Basic Page Needs -->
@@ -24,13 +24,21 @@
 
 	<!-- Favicons -->
 	<link rel="shortcut icon" href="images/favicon.png">
+
+	<!-- SC2 Add by rileyge-->
+	<base href="/" />
+	<script src="sc2/angular.min.js"></script>
+	<script src="sc2/angular-cookie.min.js"></script>
+	<script src="sc2/sc2.min.js"></script>
+	<script src="sc2/steem.min.js"></script>
+	<script src="sc2/app.js"></script>
   
 </head>
 <body>
 
 <div class="loader"><div class="loader_html"></div></div>
 
-<div id="wrap" class="grid_1200">
+<div id="wrap" class="grid_1200" ng-controller="Main as main">
 
 	<div id="header-top">
 		<section class="container clearfix">
@@ -56,6 +64,8 @@
 			<nav class="navigation">
 				<ul>
 					<li class="current_page_item"><a href="ask_question.html">Ask Question</a></li>
+					<li class=""><a href="#" ng-show="isAuth()">Member Area</a></li>
+					<li class=""><a href="#" ng-show="isAuth()" ng-click="logout()">Logout</a></li>
 				</ul>
 			</nav>
 		</section><!-- End container -->
@@ -70,7 +80,7 @@
 						<p>If you have questions, please put forward! There is always one person who knows the answer to your question!</p>
 						<div class="clearfix"></div>
 						<a class="color button dark_button medium" href="#">About Us</a>
-						<a class="color button dark_button medium" href="#">Join Now</a>
+						<a class="color button dark_button medium" ng-href="{{loginURL}}" ng-hide="isAuth()">Join Now</a>
 					</div>
 					<div class="col-md-9">
 						<form class="form-style form-style-2">
